@@ -1,0 +1,163 @@
+body {
+    font-size: 20px;
+    font-family: Tahoma, 'Segoe UI', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form #editor {
+    border: 0;
+    padding: 10px;
+    width: 90%;
+    margin-right: 0.5%;
+}
+
+form>button {
+    background-color: DodgerBlue;
+    border: none;
+    padding: 10px;
+}
+#send-btn{
+    display: block;
+    width: 100%;
+}
+#message-box{
+    position: absolute;
+    bottom: 165px;
+    width: 100%;
+    height: 100vh;
+}
+#messages {
+    overflow: auto;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-height: 72vh;
+    margin-left: -40px;
+}
+#messages img {
+    width: 30%;
+}
+#messages>li {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 17px;
+    margin: 6px 15px;
+    list-style: none;
+    box-shadow: 2px 5px 5px 0px #888888;
+}
+
+pre.ql-syntax {
+    background-color: #23241f;
+    color: #f8f8f2;
+    overflow: visible;
+    padding: 15px;
+}
+
+.ql-editor pre {
+    white-space: pre-wrap;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 5px 10px;
+}
+
+blockquote {
+    border-left: 4px solid #ccc;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 16px;
+    font-size: 10px;
+}
+.ql-font-serif {
+    font-family: Georgia, Times New Roman, serif;
+}
+.ql-font-monospace {
+    font-family: Monaco, Courier New, monospace;
+}
+.chat-pan {
+    margin: 0 11px;
+}
+.chat-name {
+    background:skyblue;
+    padding: 5px;
+    border: 1px solid skyblue;
+    border-radius: 17px 17px 0 0;
+}
+#messages .chat-name img {
+    width: 25px;
+    border-radius: 9px;
+}
+#messages .chat-name label {
+   font-family: 'Courier New', Courier, monospace;
+   font-weight: 700;
+}
+#message-editor {
+    position: absolute;
+    bottom: 0px;
+    background: white;
+    width:100%;
+}
+.ql-snow .ql-editor img {
+    max-width: 70%;
+}
+
+#index-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 0 5px;
+    border: 1px solid black;
+}
+
+#app-title {
+    text-align: center;
+    font-weight: 800;
+    background: yellow;
+    font-size: 40px;
+    color: #555050;
+}
+
+.block {
+    height: auto;
+    text-align: center;
+    font-size: 15px;
+    color: gray;
+    padding: 10px 0px;
+    display: block;
+}
+.room-block{
+    background-color: aliceblue;
+}
+.username-block {
+    background-color:antiquewhite;;
+}
+.block input[type=text] {
+    width: 94%;
+    border: 1px solid;
+    border-radius: 10px;
+    position: relative;
+    height: 48px;
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 10px;
+    color: steelblue;
+    font-family: Courier, 'Courier New', monospace;
+    padding: 0;
+}
+
+#enter-room {
+    height: auto;
+    padding: 10px 0;
+    background: greenyellow;
+    font-size: 34px;
+    color: #5d5757;
+    border: 1px solid;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+.sub-title{
+    font-size: 16px;
+    text-align: center;
+    background: yellow;
+}
