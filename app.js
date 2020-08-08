@@ -53,7 +53,7 @@ app.get('/:room', (req, res, next) => {
 });
 io.on('connection', function (socket) {
     socket.on('join', ({ userName, roomId }) => {
-        io.emit(roomId, { message: `<li><div class="notification"><username>${userName}</username> joined conversation.</div></li>`});
+        io.emit(roomId, { message: `<li><div class="notification"><username>${userName}</username> joined the conversation.</div></li>`});
     });
     socket.on('chatMsg', ({message, room, name, chatColor}) => io.emit(room, { message: `<li class="user-message"><div class='chat-name' style='background:${chatColor}'>${name}:</div> <div class='chat-pan'>${message}</div></li>`, userCount: io.engine.clientsCount}));
     socket.on('chatLeft', ({room, uName}) =>{
