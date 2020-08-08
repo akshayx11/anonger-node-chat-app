@@ -39,7 +39,7 @@ form>button {
 #messages img {
     width: 30%;
 }
-#messages>li {
+#messages .user-message {
     background-color: white;
     border: 1px solid black;
     border-radius: 17px;
@@ -160,4 +160,16 @@ blockquote {
     font-size: 16px;
     text-align: center;
     background: yellow;
+}
+
+.notification {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px auto;
+    list-style: none;
+    max-width: 409px;
+    text-align: center;
+    box-shadow: 2px 5px 5px 0px #888888;
+    padding: 2px;
 }

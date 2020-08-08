@@ -27,6 +27,7 @@ $(function () {
     const anongerColorChatName = ['#D93D27','#EFA53A', '#E2E482', '#E0BE65', '#F29D09'];
     const randomNumForChatName = Math.round(Math.random(0, anongerColorChatName.length - 1) * 10); 
     const chatColor = anongerColorChatName[randomNumForChatName];
+    socket.emit('join', { userName: uName, roomId: room });
     $('form').submit(function () {
         const message = $('#editor .ql-editor').html();
         if($('#editor .ql-editor').hasClass('ql-blank')){
@@ -38,15 +39,21 @@ $(function () {
         return false;
     });
     socket.on(room, function ({message, userCount, chatColor}) {
-        $('#messages').append($('<li>').html(message));
-            console.log(userCount);
-           // $(".chat-name").css('background', chatColor);
-            $('#messages').scrollTop($('#messages')[0].scrollHeight);
+        const messageHTML = $(message).html();
+        if($(messageHTML).hasClass('notification') && $(messageHTML).find('username').text() === uName) {
+            return;
+        }
+        $('#messages').append(message);
+        console.log(userCount);
+        $('#messages').scrollTop($('#messages')[0].scrollHeight);
     });
     $('#enter-room').on('click', ()=>{
         const roomId  = $('#roomId').val();
         const userName = $('#userName').val();
         const url =  `/${roomId}?name=${userName}`;
         window.location.href = url;
+    });
+    window.addEventListener('beforeunload', function () {
+        socket.emit('chatLeft', {uName, room});
     });
 });

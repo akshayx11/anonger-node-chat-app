@@ -52,7 +52,13 @@ app.get('/:room', (req, res, next) => {
     });
 });
 io.on('connection', function (socket) {
-    socket.on('chatMsg', ({message, room, name, chatColor}) => io.emit(room, { message: `<div class='chat-name' style='background:${chatColor}'>${name}:</div> <div class='chat-pan'>${message}</div>`, userCount: io.engine.clientsCount}));
+    socket.on('join', ({ userName, roomId }) => {
+        io.emit(roomId, { message: `<li><div class="notification"><username>${userName}</username> joined conversation.</div></li>`});
+    });
+    socket.on('chatMsg', ({message, room, name, chatColor}) => io.emit(room, { message: `<li class="user-message"><div class='chat-name' style='background:${chatColor}'>${name}:</div> <div class='chat-pan'>${message}</div></li>`, userCount: io.engine.clientsCount}));
+    socket.on('chatLeft', ({room, uName}) =>{
+        io.emit(room, { message: `<li class="notification"><username>${uName}</username> left the room.</div></li>`});
+    });
 });
 
 const PORT = process.env.PORT || 3001;
