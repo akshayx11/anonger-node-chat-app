@@ -177,3 +177,24 @@ blockquote {
     box-shadow: 2px 5px 5px 0px #888888;
     padding: 2px;
 }
+.btn-helper-conatiner{
+    position: absolute;
+}
+.btn-helper {
+    background: white;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 3px 8px;
+    margin: 5px;
+}
+#home-link {
+    background: #caed3e;
+}
+#refresh-link {
+    background: tomato;
+}
+.typing  {
+    font-size: 15px;
+    height: 21px;
+    padding: 0 6px;
+}

@@ -28,7 +28,13 @@ $(function () {
     const randomNumForChatName = Math.round(Math.random(0, anongerColorChatName.length - 1) * 10); 
     const chatColor = anongerColorChatName[randomNumForChatName];
     socket.emit('join', { userName: uName, roomId: room });
-    $('form').submit(function () {
+    var typing=false;
+    var timeout=undefined;
+    function typingTimeout(){
+        typing=false
+        socket.emit('typing', {user:uName, typing:false})
+    }
+    const sendMessage = () => {
         const message = $('#editor .ql-editor').html();
         if($('#editor .ql-editor').hasClass('ql-blank')){
             alert('You forget to add message.');
@@ -37,6 +43,24 @@ $(function () {
         socket.emit('chatMsg', { message, room, name, chatColor });
         $('#editor .ql-editor').html('');
         return false;
+    }
+    $('form').submit(() => {
+        return sendMessage();
+    });
+    $('#editor').on('keydown', (e) => {
+        if(e.ctrlKey && ( e.which === 13 )) {
+            return sendMessage();
+        }
+        if(e.which!=13){
+            typing=true
+            //console.log({user:uName, typing:true});
+            socket.emit('typing', {user:uName, typing:true});
+            clearTimeout(timeout);
+            timeout=setTimeout(typingTimeout, 3000);
+          }else{
+            clearTimeout(timeout);
+            typingTimeout();
+          }
     });
     socket.on(room, function ({message, userCount, chatColor}) {
         const messageHTML = $(message).html();
@@ -55,5 +79,15 @@ $(function () {
     });
     window.addEventListener('beforeunload', function () {
         socket.emit('chatLeft', {uName, room});
+    });
+    socket.on('display', (data)=>{
+        if(data.typing==true){
+            if(data.user !== uName) {
+                $('.typing').text(`${data.user} is typing...`)
+            }   
+        } 
+        else{
+            $('.typing').text("")
+        }
     });
 });

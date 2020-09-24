@@ -59,6 +59,14 @@ io.on('connection', function (socket) {
     socket.on('chatLeft', ({room, uName}) =>{
         io.emit(room, { message: `<li class="notification"><username>${uName}</username> left the room.</div></li>`});
     });
+    socket.on('typing', data =>{
+        if(data.typing==true) {
+           io.emit('display', data);
+        }
+        else {
+           io.emit('display', data);
+        }
+    });
 });
 
 const PORT = process.env.PORT || 3001;
