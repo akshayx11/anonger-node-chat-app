@@ -80,6 +80,9 @@ blockquote {
 .chat-pan {
     margin: 0 11px;
 }
+.chat-pan p{
+    overflow-wrap: break-word;  
+}
 .chat-name {
     background:skyblue;
     padding: 5px;
