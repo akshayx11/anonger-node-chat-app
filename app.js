@@ -65,7 +65,7 @@ io.on('connection', function (socket) {
             io.emit(`display${data.roomId}`, data);
         }
         else {
-           io.emit(`display${data.roomId}`);
+           io.emit(`display${data.roomId}`, data);
         }
     });
 });
