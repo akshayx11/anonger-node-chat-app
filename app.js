@@ -61,10 +61,11 @@ io.on('connection', function (socket) {
     });
     socket.on('typing', data =>{
         if(data.typing==true) {
-           io.emit('display', data);
+           console.log(data.roomId);
+            io.emit(`display${data.roomId}`, data);
         }
         else {
-           io.emit('display', data);
+           io.emit(`display${data.roomId}`);
         }
     });
 });
