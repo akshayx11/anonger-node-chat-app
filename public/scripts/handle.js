@@ -32,7 +32,7 @@ $(function () {
     var timeout=undefined;
     function typingTimeout(){
         typing=false
-        socket.emit('typing', {user:uName, typing:false})
+        socket.emit('typing', {user:uName, typing:false, roomId: room})
     }
     const sendMessage = () => {
         const message = $('#editor .ql-editor').html();
@@ -54,7 +54,7 @@ $(function () {
         if(e.which!=13){
             typing=true
             //console.log({user:uName, typing:true});
-            socket.emit('typing', {user:uName, typing:true});
+            socket.emit('typing', {user:uName, typing:true, roomId: room});
             clearTimeout(timeout);
             timeout=setTimeout(typingTimeout, 3000);
           }else{
@@ -80,7 +80,7 @@ $(function () {
     window.addEventListener('beforeunload', function () {
         socket.emit('chatLeft', {uName, room});
     });
-    socket.on('display', (data)=>{
+    socket.on(`display${room}`, (data) =>{
         if(data.typing==true){
             if(data.user !== uName) {
                 $('.typing').text(`${data.user} is typing...`)
