@@ -61,7 +61,7 @@ io.on('connection', function (socket) {
     });
     socket.on('typing', data =>{
         if(data.typing==true) {
-           console.log(data.roomId);
+            //console.log(data.roomId);
             io.emit(`display${data.roomId}`, data);
         }
         else {

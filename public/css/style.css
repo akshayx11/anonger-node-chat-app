@@ -212,3 +212,9 @@ blockquote {
     height: 21px;
     padding: 0 6px;
 }
+#index-footer {
+    background-color: #b0bbd4;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+}
